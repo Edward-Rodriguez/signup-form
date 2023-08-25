@@ -18,17 +18,38 @@ body {
 }
 
 .image-sidebar {
+  max-width: 33%;
   flex: 1;
-  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: black;
   background-image: url(../img/background-leaves.jpg);
   background-size: auto 100%;
   background-repeat: no-repeat;
+  color: #f9fafb;
+}
+
+.image-sidebar > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  background-color: rgba(7, 13, 1, 0.5);
 }
 
 .image-sidebar img {
+  height: 200px;
+}
+
+#image-attribution {
+}
+
+#image-attribution a {
+  text-decoration: none;
+  color: #f9fafb;
 }
 
 .main-content {
-  width: 800px;
+  flex: 1;
 }
