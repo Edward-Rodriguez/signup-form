@@ -9,3 +9,26 @@ html {
   margin: 0;
   padding: 0;
 }
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  background-color: #f9fafb;
+}
+
+.image-sidebar {
+  flex: 1;
+  max-width: 700px;
+  background-color: black;
+  background-image: url(../img/pickleball.jpg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.image-sidebar img {
+}
+
+.main-content {
+  width: 800px;
+}
