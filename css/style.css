@@ -136,3 +136,38 @@ input:focus {
   border: 2px solid #4a6ed6;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
 }
+
+.submit {
+  padding: 48px 64px;
+}
+
+.submit > button {
+  background-color: #596d48;
+  border-radius: 6px;
+  padding: 12px 32px;
+  color: #e5e7eb;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.288);
+  transition-duration: 0.4s;
+}
+
+.submit > button:hover {
+  color: #596d48;
+  background-color: #e5e7eb;
+  opacity: 0.8;
+}
+
+.submit p {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+#login-link,
+#login-link:visited,
+#login-link:active {
+  text-decoration: none;
+  color: #596d48;
+}
