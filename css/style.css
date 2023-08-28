@@ -43,7 +43,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 20vh;
   background-color: rgba(7, 13, 1, 0.5);
 }
 
@@ -75,15 +75,17 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
+  padding-top: 10vh;
 }
 
-.main-content {
-}
-
-.main-content > header > h1 {
+#main-heading {
   padding: 64px;
   font-size: 3.6rem;
   letter-spacing: 0.1rem;
+}
+
+#main-heading > br {
+  margin-top: 24px;
 }
 
 #input-fields-container {
@@ -137,6 +139,11 @@ input:focus {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
 }
 
+.optional {
+  color: rgb(105, 105, 105);
+  font-size: 1.2rem;
+}
+
 .submit {
   padding: 48px 64px;
 }
@@ -144,6 +151,7 @@ input:focus {
 .submit > button {
   background-color: #596d48;
   border-radius: 6px;
+  border: none;
   padding: 12px 32px;
   color: #e5e7eb;
   font-size: 2rem;
@@ -157,7 +165,7 @@ input:focus {
 .submit > button:hover {
   color: #596d48;
   background-color: #e5e7eb;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .submit p {
@@ -170,4 +178,8 @@ input:focus {
 #login-link:active {
   text-decoration: none;
   color: #596d48;
+}
+
+.error {
+  border: 2px solid #c13838 !important;
 }

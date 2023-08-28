@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup Form</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="form.js" defer></script>
   </head>
   <body>
     <div class="image-sidebar">
@@ -29,11 +30,12 @@
     </div>
     <div class="main-content">
       <header>
-        <h1>
+        <h1 id="main-heading">
           This is not a real online service! You know you need something like
           this in your life to help you realize you deepest dreams. Sign up
           <em>now</em>
           to get started
+          <br />
           <br />
           You
           <em>know</em>
@@ -47,39 +49,43 @@
           <div class="form-row">
             <div class="form-control">
               <label for="firstname">FIRST NAME</label>
-              <input type="text" name="firstname" id="firstname" />
+              <input type="text" name="firstname" id="firstname" required />
             </div>
             <div class="form-control">
               <label for="lastname">LAST NAME</label>
-              <input type="text" name="lastname" id="lastname" />
+              <input type="text" name="lastname" id="lastname" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-control">
               <label for="email">EMAIL</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" required />
             </div>
             <div class="form-control">
-              <label for="phonenumber">PHONE NUMBER</label>
-              <input type="email" name="phonenumber" id="phonenumber" />
+              <label for="phonenumber">
+                PHONE NUMBER
+                <span class="optional">(optional)</span>
+              </label>
+              <input type="text" name="phonenumber" id="phonenumber" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-control">
               <label for="password">PASSWORD</label>
-              <input type="password" name="password" id="password" />
+              <input type="password" name="password" id="password" required />
             </div>
             <div class="form-control">
               <label for="phonenumber">CONFIRM PASSWORD</label>
               <input
                 type="password"
                 name="password-confirm"
-                id="password-confirm" />
+                id="password-confirm"
+                required />
             </div>
           </div>
         </section>
         <div class="submit">
-          <button>Create Account</button>
+          <button type="submit">Create Account</button>
           <p>
             Already have an account?
             <a id="login-link" href="">Log in</a>
