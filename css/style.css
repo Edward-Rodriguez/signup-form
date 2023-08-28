@@ -90,11 +90,12 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 24px 64px;
+  padding: 32px 64px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.295);
 }
 
 #input-fields-container > h1 {
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   width: 100%;
   margin-bottom: 24px;
 }
@@ -102,13 +103,16 @@ body {
 .form-row {
   display: flex;
   flex-wrap: wrap;
+  gap: 72px;
+  row-gap: 0px;
 }
 
 .form-control {
   display: flex;
   flex-direction: column;
-  margin-right: 48px;
-  margin-bottom: 12px;
+  margin-bottom: 32px;
+  flex-grow: 1;
+  max-width: 450px;
 }
 
 .form-control > label {
@@ -119,14 +123,16 @@ body {
 
 .form-control input {
   appearance: none;
-  width: 300px;
+  min-width: 300px;
   height: 32px;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   outline: none;
+  padding: 8px;
+  font-size: 1.8rem;
 }
 
-input[type='text']:focus {
+input:focus {
   border: 2px solid #4a6ed6;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
 }
