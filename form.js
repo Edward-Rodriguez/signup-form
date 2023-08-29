@@ -7,7 +7,7 @@ const regexPatterns = {
   password: passwordRegex,
   passwordConfirm: passwordRegex,
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
-  phonenumber: /\d{3}[\)]\d{4}[\-]\d{4}/,
+  phonenumber: /\d{3}[\-]\d{3}[\-]\d{4}/,
 };
 
 const errorMessages = {
@@ -25,6 +25,9 @@ const inputs = document.querySelectorAll('input');
 
 const submitButton = document.querySelector("button[type='submit']");
 submitButton.addEventListener('click', (ev) => onSubmit(ev));
+
+const phoneNumber = document.querySelector("input[name='phonenumber']");
+phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
 
 function isValidInput(field, regex) {
   if (!regex.test(field.value) && field.value !== '') return false;
@@ -54,4 +57,18 @@ function updateErrorMessage(field, visibility) {
   const errorMessage = parentElement.querySelector('.error-message');
   errorMessage.textContent = errorMessages[field.name];
   errorMessage.style.visibility = visibility;
+}
+
+function updateDisplayPhoneNumber(ev) {
+  input = ev.target.value;
+  let updatedValue = '';
+  switch (input.length) {
+    case 3:
+    case 7:
+      updatedValue = input + '-';
+      break;
+    default:
+      updatedValue += input;
+  }
+  ev.target.value = updatedValue;
 }

@@ -43,7 +43,7 @@
         </h1>
       </header>
 
-      <form novalidate>
+      <form>
         <section id="input-fields-container">
           <h1>Let's do this!</h1>
           <div class="form-row">
@@ -69,7 +69,11 @@
                 PHONE NUMBER
                 <span class="optional">(optional)</span>
               </label>
-              <input type="text" name="phonenumber" id="phonenumber" />
+              <input
+                type="text"
+                name="phonenumber"
+                id="phonenumber"
+                maxlength="12" />
               <p class="error-message"></p>
             </div>
           </div>
