@@ -92,7 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 32px 64px;
+  padding: 48px 64px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.295);
 }
 
@@ -112,7 +112,7 @@ body {
 .form-control {
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   flex-grow: 1;
   max-width: 450px;
 }
@@ -126,7 +126,7 @@ body {
 .form-control input {
   appearance: none;
   min-width: 300px;
-  height: 32px;
+  height: 36px;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
   outline: none;
@@ -152,9 +152,9 @@ input:focus {
   background-color: #596d48;
   border-radius: 6px;
   border: none;
-  padding: 12px 32px;
+  padding: 18px 48px;
   color: #e5e7eb;
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 24px;
   cursor: pointer;
@@ -176,12 +176,21 @@ input:focus {
 #login-link,
 #login-link:visited,
 #login-link:active {
+  font-size: 2rem;
   text-decoration: none;
   color: #596d48;
 }
 
 .error {
   border: 2px solid #c13838 !important;
+}
+
+.error-message {
+  visibility: hidden;
+  height: 14px;
+  color: #c13838;
+  font-size: 1.3rem;
+  white-space: pre-line;
 }
 
 /* to disable blue background on form submit, reference: https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied*/

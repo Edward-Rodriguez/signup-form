@@ -1,6 +1,5 @@
 const nameRegex = /^[a-zA-Z]{1,256}$/;
-const passwordRegex =
-  /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
 const regexPatterns = {
   firstname: nameRegex,
@@ -12,25 +11,17 @@ const regexPatterns = {
 };
 
 const errorMessages = {
-  firstname: { missing: 'First ' },
+  firstname: 'Use at least 3 alphabetic characters',
+  lastname: 'Use at least 3 alphabetic characters',
+  password: `Use at least 8 characters 
+                Use upper and lower case characters
+                Use 1 or more numbers`,
+  passwordConfirm: 'Enter valid password',
+  email: 'Enter in the format: name@example.com',
+  phonenumber: 'Enter in format: 123-456-7890 (without dashes)',
 };
 
 const inputs = document.querySelectorAll('input');
-
-// inputs.forEach((input) => {
-//   input.addEventListener('click', (ev) => {
-//     validateInput(ev.target, regexPatterns[ev.target.name]);
-//     console.log(input.name);
-//   });
-// });
-
-// function validateInput(field, regex) {
-//   if (!regex.test(field.value) && field.value !== '') {
-//     field.className = 'error';
-//   } else {
-//     field.classList.remove('error');
-//   }
-// }
 
 const submitButton = document.querySelector("button[type='submit']");
 submitButton.addEventListener('click', (ev) => onSubmit(ev));
@@ -40,24 +31,6 @@ function isValidInput(field, regex) {
   return true;
 }
 
-// function validateInputs() {
-//   inputs.forEach((field) => {
-//     const regex = regexPatterns[field.name];
-//     if (!regex.test(field.value) && field.value !== '') {
-//       field.className = 'error';
-//     } else {
-//       field.classList.remove('error');
-//     }
-//   });
-// }
-
-/**
- * function onSubmit
- * Create a list of the input elements
- * iterate through each element
- * call 'validateInput(element, regexPattern)' function
- * if invalid call function 'showError(element)'
- */
 function onSubmit(ev) {
   ev.preventDefault();
   inputs.forEach((field) => {
@@ -72,4 +45,8 @@ function onSubmit(ev) {
 function showError(field) {
   if (field.name === 'phonenumber' && field.value !== '') return;
   field.className = 'error';
+  const parentElement = field.parentElement;
+  const errorMessage = parentElement.querySelector('.error-message');
+  errorMessage.textContent = errorMessages[field.name];
+  errorMessage.style.visibility = 'visible';
 }
