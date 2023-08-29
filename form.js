@@ -19,6 +19,7 @@ const errorMessages = {
   passwordConfirm: 'Enter valid password',
   email: 'Enter in the format: name@example.com',
   phonenumber: 'Enter in format: 123-456-7890 (without dashes)',
+  required: '*Field Required',
 };
 
 const inputs = document.querySelectorAll('input');
@@ -30,7 +31,7 @@ const phoneNumber = document.querySelector("input[name='phonenumber']");
 phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
 
 function isValidInput(field, regex) {
-  if (!regex.test(field.value) && field.value !== '') return false;
+  if (!regex.test(field.value)) return false;
   return true;
 }
 
@@ -55,8 +56,12 @@ function showError(field) {
 function updateErrorMessage(field, visibility) {
   const parentElement = field.parentElement;
   const errorMessage = parentElement.querySelector('.error-message');
-  errorMessage.textContent = errorMessages[field.name];
   errorMessage.style.visibility = visibility;
+  if (field.value === '') {
+    errorMessage.textContent = errorMessages.required;
+  } else {
+    errorMessage.textContent = errorMessages[field.name];
+  }
 }
 
 function updateDisplayPhoneNumber(ev) {
