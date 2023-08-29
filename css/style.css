@@ -183,3 +183,9 @@ input:focus {
 .error {
   border: 2px solid #c13838 !important;
 }
+
+/* to disable blue background on form submit, reference: https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s;
+}
