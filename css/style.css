@@ -92,7 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 48px 64px;
+  padding: 48px 64px 0px 64px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.295);
 }
 
@@ -134,6 +134,10 @@ body {
   font-size: 1.8rem;
 }
 
+.form-row:last-child .form-control {
+  margin-bottom: 38px;
+}
+
 input:focus {
   border: 2px solid #4a6ed6;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.295);
@@ -145,7 +149,7 @@ input:focus {
 }
 
 .submit {
-  padding: 48px 64px;
+  padding: 36px 64px;
 }
 
 .submit > button {

@@ -14,8 +14,8 @@ const errorMessages = {
   firstname: 'Use at least 3 alphabetic characters',
   lastname: 'Use at least 3 alphabetic characters',
   password: `Use at least 8 characters 
-                Use upper and lower case characters
-                Use 1 or more numbers`,
+             Use upper and lower case characters
+             Use 1 or more numbers`,
   passwordConfirm: 'Enter valid password',
   email: 'Enter in the format: name@example.com',
   phonenumber: 'Enter in format: 123-456-7890 (without dashes)',
@@ -38,15 +38,20 @@ function onSubmit(ev) {
       showError(field);
     } else {
       field.classList.remove('error');
+      updateErrorMessage(field, 'hidden');
     }
   });
 }
 
 function showError(field) {
-  if (field.name === 'phonenumber' && field.value !== '') return;
+  if (field.name === 'phonenumber' && field.value === '') return;
   field.className = 'error';
+  updateErrorMessage(field, 'visible');
+}
+
+function updateErrorMessage(field, visibility) {
   const parentElement = field.parentElement;
   const errorMessage = parentElement.querySelector('.error-message');
   errorMessage.textContent = errorMessages[field.name];
-  errorMessage.style.visibility = 'visible';
+  errorMessage.style.visibility = visibility;
 }
