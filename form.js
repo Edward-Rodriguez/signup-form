@@ -16,7 +16,7 @@ const errorMessages = {
   password: `Use at least 8 characters 
              Use upper and lower case characters
              Use 1 or more numbers`,
-  passwordConfirm: 'Enter valid password',
+  passwordConfirm: '*Passwords do not match',
   email: 'Enter in the format: name@example.com',
   phonenumber: 'Enter in format: 123-456-7890 (without dashes)',
   required: '*Field Required',
@@ -29,6 +29,11 @@ submitButton.addEventListener('click', (ev) => onSubmit(ev));
 
 const phoneNumber = document.querySelector("input[name='phonenumber']");
 phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
+
+const passwordConfirm = document.querySelector("input[name='passwordConfirm']");
+passwordConfirm.addEventListener('keyup', (ev) =>
+  handlePasswordConfirmation(ev)
+);
 
 function isValidInput(field, regex) {
   if (!regex.test(field.value)) return false;
@@ -76,4 +81,13 @@ function updateDisplayPhoneNumber(ev) {
       updatedValue += input;
   }
   ev.target.value = updatedValue;
+}
+
+function handlePasswordConfirmation(ev) {
+  const passwordField = document.querySelector('input[name=password]');
+  if (ev.target.value !== '' && ev.target.value !== passwordField.value) {
+    updateErrorMessage(ev.target, 'visible');
+  } else {
+    updateErrorMessage(ev.target, 'hidden');
+  }
 }
