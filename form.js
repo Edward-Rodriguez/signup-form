@@ -12,7 +12,7 @@ const regexPatterns = {
 
 const errorMessages = {
   firstname: 'Use at least 3 alphabetic characters only',
-  lastname: 'Use 3 or more alphabetic characters only',
+  lastname: 'Use at least 3 alphabetic characters only',
   password: `Use at least 8 characters 
              Use upper and lower case characters
              Use 1 or more numbers`,
@@ -23,22 +23,15 @@ const errorMessages = {
 };
 
 const inputs = document.querySelectorAll('input');
-
 const submitButton = document.querySelector("button[type='submit']");
-submitButton.addEventListener('click', (ev) => onSubmit(ev));
-
 const phoneNumber = document.querySelector("input[name='phonenumber']");
-phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
-
 const passwordConfirm = document.querySelector("input[name='passwordConfirm']");
+
+submitButton.addEventListener('click', (ev) => onSubmit(ev));
+phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
 passwordConfirm.addEventListener('keyup', (ev) =>
   handlePasswordConfirmation(ev)
 );
-
-function isValidInput(field, regex) {
-  if (!regex.test(field.value)) return false;
-  return true;
-}
 
 function onSubmit(ev) {
   ev.preventDefault();
@@ -52,7 +45,13 @@ function onSubmit(ev) {
   });
 }
 
+function isValidInput(field, regex) {
+  if (!regex.test(field.value)) return false;
+  return true;
+}
+
 function showError(field) {
+  // skip optional phone number field if empty
   if (field.name === 'phonenumber' && field.value === '') return;
   field.className = 'error';
   updateErrorMessage(field, 'visible');
@@ -69,6 +68,7 @@ function updateErrorMessage(field, visibility) {
   }
 }
 
+// to automatically add dashes as the user inputs number
 function updateDisplayPhoneNumber(ev) {
   input = ev.target.value;
   let updatedValue = '';
