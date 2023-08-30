@@ -203,6 +203,14 @@ input:focus {
   white-space: pre-line;
 }
 
+#success {
+  visibility: hidden;
+  font-size: 3.6rem;
+  font-weight: bold;
+  color: #82bb50;
+  padding: 24px 0px;
+}
+
 /* to disable default blue background on form submit, reference: https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied*/
 input:-webkit-autofill,
 input:-webkit-autofill:focus {

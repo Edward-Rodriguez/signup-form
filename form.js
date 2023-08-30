@@ -1,11 +1,11 @@
 const nameRegex = /^[a-zA-Z]{1,256}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+let allFieldsAreValid = true;
 
 const regexPatterns = {
   firstname: nameRegex,
   lastname: nameRegex,
   password: passwordRegex,
-  passwordConfirm: passwordRegex,
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
   phonenumber: /\d{3}[\-]\d{3}[\-]\d{4}/,
 };
@@ -22,27 +22,40 @@ const errorMessages = {
   required: '*Field Required',
 };
 
-const inputs = document.querySelectorAll('input');
+const inputsArray = Array.from(document.querySelectorAll('input'));
+const phoneNumber = inputsArray.find((input) => input.name === 'phonenumber');
+const passwordField = inputsArray.find((input) => input.name === 'password');
+const passwordConfirmField = inputsArray.find(
+  (input) => input.name === 'passwordConfirm'
+);
 const submitButton = document.querySelector("button[type='submit']");
-const phoneNumber = document.querySelector("input[name='phonenumber']");
-const passwordConfirm = document.querySelector("input[name='passwordConfirm']");
 
 submitButton.addEventListener('click', (ev) => onSubmit(ev));
 phoneNumber.addEventListener('keyup', (ev) => updateDisplayPhoneNumber(ev));
-passwordConfirm.addEventListener('keyup', (ev) =>
+passwordConfirmField.addEventListener('keyup', (ev) =>
   handlePasswordConfirmation(ev)
 );
+passwordField.addEventListener('keyup', (ev) => {
+  if (passwordConfirmField.value !== '') handlePasswordConfirmation(ev);
+});
 
 function onSubmit(ev) {
+  //reset
+  allFieldsAreValid = true;
+  resetSuccessMessage();
   ev.preventDefault();
-  inputs.forEach((field) => {
-    if (!isValidInput(field, regexPatterns[field.name])) {
-      showError(field);
-    } else {
-      field.classList.remove('error');
-      updateDisplayErrorMessage(field, 'hidden');
-    }
-  });
+
+  inputsArray
+    .filter((input) => input.name !== 'passwordConfirm')
+    .forEach((field) => {
+      if (!isValidInput(field, regexPatterns[field.name])) {
+        showError(field);
+      } else {
+        field.classList.remove('error');
+        updateDisplayErrorMessage(field, 'hidden');
+      }
+    });
+  if (allFieldsAreValid && hasMatchingPasswords()) showSuccessMessage();
 }
 
 function isValidInput(field, regex) {
@@ -53,6 +66,7 @@ function isValidInput(field, regex) {
 function showError(field) {
   // skip optional phone number field if empty
   if (field.name === 'phonenumber' && field.value === '') return;
+  allFieldsAreValid = false;
   field.className = 'error';
   updateDisplayErrorMessage(field, 'visible');
 }
@@ -68,7 +82,7 @@ function updateDisplayErrorMessage(field, visibility) {
   }
 }
 
-// to automatically add dashes as the user inputs number
+// to automatically add dashes as the user inputsArray number
 function updateDisplayPhoneNumber(ev) {
   input = ev.target.value;
   let updatedValue = '';
@@ -84,12 +98,26 @@ function updateDisplayPhoneNumber(ev) {
 }
 
 function handlePasswordConfirmation(ev) {
-  const passwordField = document.querySelector('input[name=password]');
-  if (ev.target.value !== '' && ev.target.value !== passwordField.value) {
+  if (ev.target.value !== '' && !hasMatchingPasswords()) {
     errorMessages.passwordConfirm = '*Passwords do not match';
-    updateDisplayErrorMessage(ev.target, 'visible');
+    updateDisplayErrorMessage(passwordConfirmField, 'visible');
   } else {
     errorMessages.passwordConfirm = '';
-    updateDisplayErrorMessage(ev.target, 'hidden');
+    updateDisplayErrorMessage(passwordConfirmField, 'hidden');
   }
+}
+
+function hasMatchingPasswords() {
+  return passwordConfirmField.value === passwordField.value ? true : false;
+}
+
+function showSuccessMessage() {
+  const successMessage = document.querySelector('#success');
+  successMessage.textContent = 'Account created succesfully!';
+  successMessage.style.visibility = 'visible';
+}
+
+function resetSuccessMessage() {
+  const successMessage = document.querySelector('#success');
+  successMessage.style.visibility = 'hidden';
 }
