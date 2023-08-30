@@ -195,6 +195,7 @@ input:focus {
 
 .error-message {
   visibility: hidden;
+  font-family: Arial, Helvetica, sans-serif;
   height: 14px;
   color: #c13838;
   font-size: 1.3rem;

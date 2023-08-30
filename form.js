@@ -11,8 +11,8 @@ const regexPatterns = {
 };
 
 const errorMessages = {
-  firstname: 'Use at least 3 alphabetic characters',
-  lastname: 'Use at least 3 alphabetic characters',
+  firstname: 'Use at least 3 alphabetic characters only',
+  lastname: 'Use 3 or more alphabetic characters only',
   password: `Use at least 8 characters 
              Use upper and lower case characters
              Use 1 or more numbers`,
