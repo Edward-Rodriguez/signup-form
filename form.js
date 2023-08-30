@@ -40,7 +40,7 @@ function onSubmit(ev) {
       showError(field);
     } else {
       field.classList.remove('error');
-      updateErrorMessage(field, 'hidden');
+      updateDisplayErrorMessage(field, 'hidden');
     }
   });
 }
@@ -54,10 +54,10 @@ function showError(field) {
   // skip optional phone number field if empty
   if (field.name === 'phonenumber' && field.value === '') return;
   field.className = 'error';
-  updateErrorMessage(field, 'visible');
+  updateDisplayErrorMessage(field, 'visible');
 }
 
-function updateErrorMessage(field, visibility) {
+function updateDisplayErrorMessage(field, visibility) {
   const parentElement = field.parentElement;
   const errorMessage = parentElement.querySelector('.error-message');
   errorMessage.style.visibility = visibility;
@@ -86,8 +86,10 @@ function updateDisplayPhoneNumber(ev) {
 function handlePasswordConfirmation(ev) {
   const passwordField = document.querySelector('input[name=password]');
   if (ev.target.value !== '' && ev.target.value !== passwordField.value) {
-    updateErrorMessage(ev.target, 'visible');
+    errorMessages.passwordConfirm = '*Passwords do not match';
+    updateDisplayErrorMessage(ev.target, 'visible');
   } else {
-    updateErrorMessage(ev.target, 'hidden');
+    errorMessages.passwordConfirm = '';
+    updateDisplayErrorMessage(ev.target, 'hidden');
   }
 }
