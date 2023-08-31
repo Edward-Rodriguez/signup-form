@@ -1,18 +1,18 @@
-const nameRegex = /^[a-zA-Z]{1,256}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 let allFieldsAreValid = true;
 
+const nameRegex = /^[a-zA-Z]{1,256}$/;
 const regexPatterns = {
   firstname: nameRegex,
   lastname: nameRegex,
-  password: passwordRegex,
+  password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
   email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
   phonenumber: /\d{3}[\-]\d{3}[\-]\d{4}/,
 };
 
+const nameErrorMessaage = 'Use at least 3 alphabetic characters only';
 const errorMessages = {
-  firstname: 'Use at least 3 alphabetic characters only',
-  lastname: 'Use at least 3 alphabetic characters only',
+  firstname: nameErrorMessaage,
+  lastname: nameErrorMessaage,
   password: `Use at least 8 characters 
              Use upper and lower case characters
              Use 1 or more numbers`,
@@ -82,7 +82,7 @@ function updateDisplayErrorMessage(field, visibility) {
   }
 }
 
-// to automatically add dashes as the user inputsArray number
+// to automatically add dashes as the user inputs phone number
 function updateDisplayPhoneNumber(ev) {
   input = ev.target.value;
   let updatedValue = '';
